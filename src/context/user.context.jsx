@@ -22,6 +22,8 @@ export const UserProvider = ({ children }) => {
       }
       setCurrentUser(user);
     });
+
+    //will run the unsubscribe method when the component is destroyed
     return unsubscribe;
   }, []);
 
