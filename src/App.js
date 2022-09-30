@@ -12,7 +12,7 @@ const App = () => {
       <Route path="/" element={<Navigation />}>
         {/*index especifies that Home component will be the child element rendered by default in the parent*/}
         <Route index element={<Home />} />
-        <Route path="shop" element={<Shop />} />
+        <Route path="shop/*" element={<Shop />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="auth" element={<Authentication />} />
       </Route>
