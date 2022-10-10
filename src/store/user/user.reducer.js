@@ -1,17 +1,18 @@
-export const USER_ACTIONS_TYPES = {
-  SET_CURRENT_USER: "SET_CURRENT_USER",
-};
+import { createSlice } from "@reduxjs/toolkit";
+import { USER_ACTIONS_TYPES } from "./user.types";
 
 const INITIAL_STATE = {
-  currentUser: null,
+  currentUser: "",
 };
 
-export const userReducer = (state = INITIAL_STATE, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case USER_ACTIONS_TYPES.SET_CURRENT_USER:
-      return { ...state, currentUser: payload };
-    default:
-      return state;
-  }
-};
+export const userSlicer = createSlice({
+  name: "user",
+  initialState: INITIAL_STATE,
+  reducers: {
+    [USER_ACTIONS_TYPES.SET_CURRENT_USER]: (state, { payload }) => {
+      state.currentUser = payload;
+    },
+  },
+});
+
+export default userSlicer.reducer;
