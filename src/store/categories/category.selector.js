@@ -7,6 +7,11 @@ export const selectCategories = createSelector(
   (categoriesSlice) => categoriesSlice.categories
 );
 
+export const selectCategoriesIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
+);
+
 //Use memoization to trigger only the select if the categories array changes
 //Otherwise since reduce return always a new object the useSelector method thinks that is a new value and re-renders
 export const selectCategoriesMap = createSelector(

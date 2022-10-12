@@ -12,7 +12,7 @@ const middleWares = [process.env.NODE_ENV !== "production" && logger].filter(
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 };
 
 //Needed because of the way rootReducer is implemented
@@ -24,7 +24,7 @@ const combinedReducers = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
 
-// The second param (undefined) is an optional aditional default state
+// When using configureStore react thunk is automaticly included
 export const store = configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
