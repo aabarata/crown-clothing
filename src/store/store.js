@@ -34,8 +34,10 @@ const persistedReducer = persistReducer(persistConfig, combinedReducers);
 export const store = configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(middleWares),
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({ thunk: false }),
+    ...middleWares,
+  ],
 });
 
 //Initialize redux-saga

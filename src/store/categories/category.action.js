@@ -1,6 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 import { CATEGORIES_ACTIONS_TYPES } from "./category.types";
-import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
 export const fetchCategoriesStart = createAction(
   `categories/${CATEGORIES_ACTIONS_TYPES.FETCH_CATEGORIES_START}`,
@@ -26,14 +25,3 @@ export const fetchCategoriesFailed = createAction(
     };
   }
 );
-
-//Thunk created to fetch the categories from firebase
-export const fetchCategoriesAsync = () => async (dispatch) => {
-  dispatch(fetchCategoriesStart());
-  try {
-    const categoriesArray = await getCategoriesAndDocuments();
-    dispatch(fetchCategoriesSuccess(categoriesArray));
-  } catch (error) {
-    dispatch(fetchCategoriesFailed(error));
-  }
-};
